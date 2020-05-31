@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextLabel" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:textColorHint">#1D000000</item>
+        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlActivated">#000</item>
+    </style>
+
 </resources>
