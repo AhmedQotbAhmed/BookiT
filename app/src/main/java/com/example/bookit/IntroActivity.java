@@ -23,7 +23,6 @@ public class IntroActivity extends AppCompatActivity {
 
     IntroViewPagerAdapter introViewPagerAdapter;
     TabLayout tabIndicator;
-    int position = 0;
     Button btnGetStarted;
     Animation btnAnim;
     TextView tvSkip;
@@ -95,15 +94,12 @@ public class IntroActivity extends AppCompatActivity {
                     loaddLastScreen();
 
                 }
-
-
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
             }
-
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -116,7 +112,6 @@ public class IntroActivity extends AppCompatActivity {
         btnGetStarted.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 //open main activity
 
@@ -141,16 +136,13 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private boolean restorePrefData() {
 
-
         SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
         Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend", false);
         return isIntroActivityOpnendBefore;
-
 
     }
 
@@ -161,12 +153,10 @@ public class IntroActivity extends AppCompatActivity {
         editor.putBoolean("isIntroOpnend", true);
         editor.commit();
 
-
     }
 
     // show the GETSTARTED Button and hide the indicator and the next button
     private void loaddLastScreen() {
-
 
         btnGetStarted.setVisibility(View.VISIBLE);
         tvSkip.setVisibility(View.INVISIBLE);
@@ -174,7 +164,6 @@ public class IntroActivity extends AppCompatActivity {
         // TODO : ADD an animation the getstarted button
         // setup animation
         btnGetStarted.setAnimation(btnAnim);
-
 
     }
 }
