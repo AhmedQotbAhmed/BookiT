@@ -122,8 +122,7 @@ public class IntroActivity extends AppCompatActivity {
                 // i'm going to use shared preferences to that process
                 savePrefsData();
                 finish();
-
-
+                
             }
         });
 

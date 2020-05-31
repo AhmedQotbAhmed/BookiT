@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.pedromassango.doubleclick.DoubleClick;
 import com.pedromassango.doubleclick.DoubleClickListener;
 
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText email_edt;
     private EditText password_edt;
     private ProgressDialog loadingBar;
-    private CheckBox chBx_rememberMe;
+
     private SharedPreferences sp;
     private SharedPreferences.Editor Ed;
 
@@ -37,12 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Ed=sp.edit();
         email_edt=findViewById(R.id.email_signIn);
         password_edt=findViewById(R.id.pass_signIn);
-        Button signIn = findViewById(R.id.sign_in_btn);
-        Button signUp = findViewById(R.id.sign_up_btn);
+        FloatingActionButton signIn = findViewById(R.id.sign_in_btn);
+        TextView signUp = findViewById(R.id.sign_up_btn);
         TextView frg_btn = findViewById(R.id.forgotPass_btn);
         signIn_Content=findViewById(R.id.sign_in_content);
         loadingBar=new ProgressDialog(this);
-        chBx_rememberMe=findViewById(R.id.chBx_RememberMe);
+
 
 
         SharedPreferences sp1=this.getSharedPreferences("userLogin", MODE_PRIVATE);
