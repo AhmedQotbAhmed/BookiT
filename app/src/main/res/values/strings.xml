@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BOOKiT</string>
+    <string name="title_activity_home_map">Map</string>
+
 </resources>

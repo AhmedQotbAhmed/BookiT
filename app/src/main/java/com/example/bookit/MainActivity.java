@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String email_Str = email_edt.getText().toString();
                 String password_Str = password_edt.getText().toString();
                 if (!email_Str.isEmpty()&&!password_Str.isEmpty()){
-                    signIn_Content.setVisibility(View.INVISIBLE);
+
+                    startActivity( new Intent(MainActivity.this,HomeMap.class));
+
 
                 }
                 else {

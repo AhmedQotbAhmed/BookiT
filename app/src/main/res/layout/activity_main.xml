@@ -88,7 +88,7 @@ android:background="@drawable/logo_img">
         android:layout_marginBottom="124dp"
         android:background="#ffff"
         android:clickable="true"
-        android:src="@drawable/ic_signup"
+        android:src="@drawable/ic_signin"
 
         android:textColor="#ffc001"
         app:fabSize="normal"
