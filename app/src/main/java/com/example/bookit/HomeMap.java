@@ -2,36 +2,38 @@ package com.example.bookit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationListener;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.Task;
 
-public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
+public class HomeMap extends AppCompatActivity implements OnMapReadyCallback ,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         com.google.android.gms.location.LocationListener  {
@@ -42,21 +44,53 @@ public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
     private LocationRequest locationRequest;
     private  LocationCallback  mLocationCallback;
     private FusedLocationProviderClient mFusedLocationClient;
+    private TextView promoCode_txv;
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle toggle;
 
     private String  TAG="error";
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_map);
+        Toolbar toolbar=findViewById(R.id.toolbar);
+
+
+
+        setActionBar(toolbar);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        drawerLayout = (DrawerLayout) findViewById(R.id.nav_action);
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
 
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+promoCode_txv =findViewById(R.id.promo_code);
+promoCode_txv.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+    }
+});
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (toggle.onOptionsItemSelected(item))
+        {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
     /**
      * Provides a simple way of getting a device's location and is well suited for
      * applications that do not require a fine-grained location and that do not need location
@@ -64,7 +98,7 @@ public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
      * in rare cases when a location is not available.
      * <p>
      * Note: this method should be called after location permission has been granted.
-     */
+     **/
 
     /**
      * Manipulates the map once available.
@@ -79,6 +113,17 @@ public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
     buildGoogleApiClient();
+
+
+        boolean success = googleMap.setMapStyle(new MapStyleOptions(getResources()
+                .getString(R.string.style_json)));
+
+        if (!success) {
+            Log.e(TAG, "Style parsing failed.");
+        }
+        // Position the map's camera near Sydney, Australia.
+
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Check Permissions Now
@@ -93,6 +138,8 @@ public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
         }
 
     mMap.setMyLocationEnabled(true);
+
+
 
         // Add a marker in Sydney and move the camera
 
@@ -144,5 +191,8 @@ public class HomeMap extends FragmentActivity implements OnMapReadyCallback ,
                 .build();
         googleApiClient.connect();
     }
+
+
+
 
 }
