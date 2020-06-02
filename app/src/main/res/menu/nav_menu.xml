@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/book_for_friend"
+            android:icon="@drawable/ic_profile"
+            android:title=" Book for a friend"
+            />
+
+        <item
+            android:id="@+id/book_later"
+            android:icon="@drawable/ic_book_litar"
+            android:title=" Book later"
+      />
+
+        <item
+
+            android:id="@+id/free_rides"
+
+            android:icon="@drawable/ic_free_ride"
+            android:title=" free_rides"
+      />
+
+        <item
+            android:id="@+id/my_trips"
+            android:icon="@drawable/ic_my_trep"
+            android:title=" My trips"
+         />
+
+        <item
+            android:id="@+id/payment"
+             
+            android:icon="@drawable/ic_payment"
+  
+            android:title=" Payment"
+          />
+
+        <item
+            android:id="@+id/emergency"
+
+            android:icon="@drawable/ic_emergency"
+            android:padding="10dp"
+            android:title=" Emergency"
+     />
+
+        <item
+            android:id="@+id/promo_code"
+
+            android:icon="@drawable/ic_promo_code"
+            android:title=" Promo code"
+    />
+
+        <item
+            android:id="@+id/about"
+            android:layout_width="match_parent"
+
+            android:icon="@drawable/ic_about"
+            android:title=" About"
+        />
+
+        <item
+            android:id="@+id/settings"
+
+            android:icon="@drawable/ic_setting"
+
+            android:title=" Settings"
+         />
+
+    </group>
+
+</menu>

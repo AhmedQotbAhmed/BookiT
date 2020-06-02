@@ -34,18 +34,18 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".HomeMap"
+            android:name=".UI.Activty.HomeMap"
             android:label="@string/title_activity_home_map" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".IntroActivity">
+        <activity android:name=".UI.Activty.HomeActivity" />
+        <activity android:name=".UI.Activty.MainActivity" />
+        <activity android:name=".UI.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".UI.Activty.SignUpActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,4 +1,4 @@
-package com.example.bookit;
+package com.example.bookit.UI;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.bookit.UI.adapter.IntroViewPagerAdapter;
+import com.example.bookit.UI.Activty.MainActivity;
+import com.example.bookit.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

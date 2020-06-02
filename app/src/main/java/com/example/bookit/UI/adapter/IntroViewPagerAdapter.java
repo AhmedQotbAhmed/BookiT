@@ -1,4 +1,4 @@
-package com.example.bookit;
+package com.example.bookit.UI.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.example.bookit.R;
+import com.example.bookit.UI.ScreenItem;
 
 import java.util.List;
 

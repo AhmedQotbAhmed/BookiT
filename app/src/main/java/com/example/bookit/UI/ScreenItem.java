@@ -1,4 +1,4 @@
-package com.example.bookit;
+package com.example.bookit.UI;
 
 public class ScreenItem {
 

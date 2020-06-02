@@ -1,4 +1,4 @@
-package com.example.bookit;
+package com.example.bookit.UI.Activty;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bookit.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 

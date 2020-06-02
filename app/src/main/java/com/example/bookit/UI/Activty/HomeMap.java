@@ -1,4 +1,4 @@
-package com.example.bookit;
+package com.example.bookit.UI.Activty;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -7,6 +7,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -19,6 +21,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.example.bookit.R;
+import com.example.bookit.UI.adapter.FragmentAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -32,6 +36,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 
 public class HomeMap extends AppCompatActivity implements OnMapReadyCallback ,
         GoogleApiClient.ConnectionCallbacks,
@@ -48,7 +53,7 @@ public class HomeMap extends AppCompatActivity implements OnMapReadyCallback ,
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
-
+    private ViewPager viewPager;
     private String  TAG="error";
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -57,40 +62,47 @@ public class HomeMap extends AppCompatActivity implements OnMapReadyCallback ,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_map);
         Toolbar toolbar=findViewById(R.id.toolbar);
-
-
+        viewPager = findViewById(R.id.viewPager_home);
+        drawerLayout = (DrawerLayout) findViewById(R.id.nav_action);
 
         setActionBar(toolbar);
+
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        drawerLayout = (DrawerLayout) findViewById(R.id.nav_action);
+
         toggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-promoCode_txv =findViewById(R.id.promo_code);
-promoCode_txv.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
 
-    }
-});
+        //        final FragmentAdapter adapter = new FragmentAdapter(this, getSupportFragmentManager(), 9);
+        //        viewPager.setAdapter(adapter);
+        //        viewPager.addOnPageChangeListener(new  );
 
-    }
+//        promoCode_txv =findViewById(R.id.promo_code);
+//        promoCode_txv.setOnClickListener(new View.OnClickListener() {
+//        @Override
+//        public void onClick(View v) {
+//
+//        }
+//            });
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (toggle.onOptionsItemSelected(item))
-        {
-            return true;
         }
-        return super.onOptionsItemSelected(item);
 
-    }
+        @Override
+        public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+            if (toggle.onOptionsItemSelected(item))
+            {
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+
+        }
     /**
      * Provides a simple way of getting a device's location and is well suited for
      * applications that do not require a fine-grained location and that do not need location
