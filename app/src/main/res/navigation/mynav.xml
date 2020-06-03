@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mynav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.bookit.fragment.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/book4friendFragment"
+        android:name="com.example.bookit.fragment.Book4friendFragment"
+        android:label="fragment_book4friend"
+        tools:layout="@layout/fragment_book4friend" >
+        <action
+            android:id="@+id/action_book4friendFragment_to_book_LaterFragment"
+            app:destination="@id/book_LaterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/book_LaterFragment"
+        android:name="com.example.bookit.fragment.Book_LaterFragment"
+        android:label="fragment_book__later"
+        tools:layout="@layout/fragment_book__later" >
+        <action
+            android:id="@+id/action_book_LaterFragment_to_freeRidesFragment"
+            app:destination="@id/freeRidesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emergencyFragment"
+        android:name="com.example.bookit.fragment.EmergencyFragment"
+        android:label="fragment_emergency"
+        tools:layout="@layout/fragment_emergency" >
+        <action
+            android:id="@+id/action_emergencyFragment_to_promoCodesFragment"
+            app:destination="@id/promoCodesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/freeRidesFragment"
+        android:name="com.example.bookit.fragment.FreeRidesFragment"
+        android:label="fragment_free_rides"
+        tools:layout="@layout/fragment_free_rides" >
+        <action
+            android:id="@+id/action_freeRidesFragment_to_myTripsFragment"
+            app:destination="@id/myTripsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.example.bookit.fragment.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" >
+        <action
+            android:id="@+id/action_paymentFragment_to_emergencyFragment"
+            app:destination="@id/emergencyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/promoCodesFragment"
+        android:name="com.example.bookit.fragment.PromoCodesFragment"
+        android:label="fragment_promo_codes"
+        tools:layout="@layout/fragment_promo_codes" >
+        <action
+            android:id="@+id/action_promoCodesFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.bookit.fragment.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/myTripsFragment"
+        android:name="com.example.bookit.fragment.MyTripsFragment"
+        android:label="fragment_my_trips"
+        tools:layout="@layout/fragment_my_trips" >
+        <action
+            android:id="@+id/action_myTripsFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bookit.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_book4friendFragment"
+            app:destination="@id/book4friendFragment" />
+    </fragment>
+</navigation>

@@ -34,9 +34,9 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".UI.Activty.HomeMap"
-            android:label="@string/title_activity_home_map" />
-        <activity android:name=".UI.Activty.HomeActivity" />
+            android:name=".UI.Activty.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".UI.Activty.MainActivity" />
         <activity android:name=".UI.IntroActivity">
             <intent-filter>

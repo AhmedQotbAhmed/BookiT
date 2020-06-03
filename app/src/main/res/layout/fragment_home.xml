@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="343dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="17dp"
+        android:background="#AEFFFFFF">
+
+
+
+        <TextView
+            android:layout_width="20dp"
+            android:layout_height="68dp"
+            android:background="@drawable/horizontal_dashed_line"
+            map:layout_constraintBottom_toTopOf="@+id/drop_map_txv"
+            map:layout_constraintEnd_toStartOf="@+id/going_loc_map_edt"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/pickup_map_txv" />
+
+        <TextView
+            android:id="@+id/pickup_map_txv"
+            android:layout_width="86dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Pickup"
+            android:textAlignment="center"
+            android:textColor="#474DDA"
+            android:textStyle="bold"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/drop_map_txv"
+            android:layout_width="88dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/abril_fatface"
+            android:text="Drop"
+            android:textAlignment="center"
+            android:textColor="#FF9800"
+            android:textStyle="bold"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/pickup_map_txv"
+            map:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+
+            android:id="@+id/fetching_loc_map_edt"
+            android:layout_width="222dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:hint="Fetching location"
+            android:textSize="16sp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.375"
+            map:layout_constraintStart_toEndOf="@+id/pickup_map_txv"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/going_loc_map_edt"
+            android:layout_width="224dp"
+            android:layout_height="13dp"
+            android:background="@null"
+            android:hint="Were are you going?"
+            android:textSize="16sp"
+            map:layout_constraintBottom_toBottomOf="parent"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintHorizontal_bias="0.346"
+            map:layout_constraintStart_toEndOf="@+id/drop_map_txv"
+            map:layout_constraintTop_toBottomOf="@+id/fetching_loc_map_edt"
+            map:layout_constraintVertical_bias="0.75" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

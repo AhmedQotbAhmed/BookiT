@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String password_Str = password_edt.getText().toString();
                 if (!email_Str.isEmpty()&&!password_Str.isEmpty()){
 
-                    startActivity( new Intent(MainActivity.this, HomeMap.class));
+                    startActivity( new Intent(MainActivity.this, HomeActivity.class));
 
 
                 }
@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         })  );
+
+        
 
 
 
