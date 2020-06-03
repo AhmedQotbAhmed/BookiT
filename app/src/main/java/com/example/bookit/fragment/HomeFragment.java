@@ -43,22 +43,15 @@ import com.google.android.material.navigation.NavigationView;
 public class HomeFragment extends Fragment implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener, NavigationView.OnNavigationItemSelectedListener{
+        LocationListener{
 
     private GoogleMap mMap;
     private GoogleApiClient googleApiClient;
     private Location lostLocation;
     private LocationRequest locationRequest;
-    private LocationCallback mLocationCallback;
-    private FusedLocationProviderClient mFusedLocationClient;
-    private TextView promoCode_txv;
-    private NavigationView navigationView;
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle toggle;
+
     //    private ViewPager viewPager;
     private String  TAG="error";
-
-
 
     public HomeFragment() {
         // Required empty public constructor
@@ -138,7 +131,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         } else {
             // permission has been granted, continue as usual
             Task<Location> locationResult = LocationServices
-                    .getFusedLocationProviderClient(getActivity() /** Context */)
+                    .getFusedLocationProviderClient(getActivity())
                     .getLastLocation();
         }
 
@@ -150,10 +143,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
-    }
+
 
 
     protected synchronized void buildGoogleApiClient()
