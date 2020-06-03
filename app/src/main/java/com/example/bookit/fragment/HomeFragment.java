@@ -71,22 +71,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         View view=inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        drawerLayout = view.findViewById(R.id.nav_action);
-
-
-        navigationView=view.findViewById(R.id.navigation_View);
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
-
-        toggle = new ActionBarDrawerToggle(getActivity(),drawerLayout,R.string.open,R.string.close);
-
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        // Inflate the layout for this fragment
         return view;
     }
 
