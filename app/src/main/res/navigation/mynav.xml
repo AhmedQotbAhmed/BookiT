@@ -4,16 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mynav"
     app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.bookit.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_book4friendFragment"
+            app:destination="@id/book4friendFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/aboutFragment"
         android:name="com.example.bookit.fragment.AboutFragment"
-        android:label="fragment_about"
+        android:label="About"
         tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/book4friendFragment"
         android:name="com.example.bookit.fragment.Book4friendFragment"
-        android:label="fragment_book4friend"
+        android:label="Book for friend"
         tools:layout="@layout/fragment_book4friend" >
         <action
             android:id="@+id/action_book4friendFragment_to_book_LaterFragment"
@@ -22,7 +31,7 @@
     <fragment
         android:id="@+id/book_LaterFragment"
         android:name="com.example.bookit.fragment.Book_LaterFragment"
-        android:label="fragment_book__later"
+        android:label="Book later"
         tools:layout="@layout/fragment_book__later" >
         <action
             android:id="@+id/action_book_LaterFragment_to_freeRidesFragment"
@@ -31,7 +40,7 @@
     <fragment
         android:id="@+id/emergencyFragment"
         android:name="com.example.bookit.fragment.EmergencyFragment"
-        android:label="fragment_emergency"
+        android:label="Emergency"
         tools:layout="@layout/fragment_emergency" >
         <action
             android:id="@+id/action_emergencyFragment_to_promoCodesFragment"
@@ -40,7 +49,7 @@
     <fragment
         android:id="@+id/freeRidesFragment"
         android:name="com.example.bookit.fragment.FreeRidesFragment"
-        android:label="fragment_free_rides"
+        android:label="Free rides"
         tools:layout="@layout/fragment_free_rides" >
         <action
             android:id="@+id/action_freeRidesFragment_to_myTripsFragment"
@@ -49,7 +58,7 @@
     <fragment
         android:id="@+id/paymentFragment"
         android:name="com.example.bookit.fragment.PaymentFragment"
-        android:label="fragment_payment"
+        android:label="Payment"
         tools:layout="@layout/fragment_payment" >
         <action
             android:id="@+id/action_paymentFragment_to_emergencyFragment"
@@ -58,7 +67,7 @@
     <fragment
         android:id="@+id/promoCodesFragment"
         android:name="com.example.bookit.fragment.PromoCodesFragment"
-        android:label="fragment_promo_codes"
+        android:label="Promo codes"
         tools:layout="@layout/fragment_promo_codes" >
         <action
             android:id="@+id/action_promoCodesFragment_to_settingFragment"
@@ -67,7 +76,7 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.bookit.fragment.SettingFragment"
-        android:label="fragment_setting"
+        android:label="Setting"
         tools:layout="@layout/fragment_setting">
         <action
             android:id="@+id/action_settingFragment_to_aboutFragment"
@@ -76,19 +85,11 @@
     <fragment
         android:id="@+id/myTripsFragment"
         android:name="com.example.bookit.fragment.MyTripsFragment"
-        android:label="fragment_my_trips"
+        android:label="My trips"
         tools:layout="@layout/fragment_my_trips" >
         <action
             android:id="@+id/action_myTripsFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.bookit.fragment.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_book4friendFragment"
-            app:destination="@id/book4friendFragment" />
-    </fragment>
+
 </navigation>
