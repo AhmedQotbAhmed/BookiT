@@ -3,62 +3,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mynav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/nav_home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/nav_home"
         android:name="com.example.bookit.fragment.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
 
 
     <fragment
-        android:id="@+id/book4friendFragment"
+        android:id="@+id/book_for_friend"
         android:name="com.example.bookit.fragment.Book4friendFragment"
         android:label="Book for friend"
         tools:layout="@layout/fragment_book4friend" />
 
     <fragment
-        android:id="@+id/book_LaterFragment"
+        android:id="@+id/book_later"
         android:name="com.example.bookit.fragment.Book_LaterFragment"
         android:label="Book later"
         tools:layout="@layout/fragment_book__later" />
     <fragment
-        android:id="@+id/freeRidesFragment"
+        android:id="@+id/free_rides"
         android:name="com.example.bookit.fragment.FreeRidesFragment"
         android:label="Free rides"
         tools:layout="@layout/fragment_free_rides" />
 
 
     <fragment
-        android:id="@+id/myTripsFragment"
+        android:id="@+id/my_trips"
         android:name="com.example.bookit.fragment.MyTripsFragment"
         android:label="My trips"
         tools:layout="@layout/fragment_my_trips" />
     <fragment
-        android:id="@+id/paymentFragment"
+        android:id="@+id/payment"
         android:name="com.example.bookit.fragment.PaymentFragment"
         android:label="Payment"
         tools:layout="@layout/fragment_payment" />
     <fragment
-        android:id="@+id/emergencyFragment"
+        android:id="@+id/emergency"
         android:name="com.example.bookit.fragment.EmergencyFragment"
         android:label="Emergency"
         tools:layout="@layout/fragment_emergency" />
     <fragment
-        android:id="@+id/promoCodesFragment"
+        android:id="@+id/promo_code"
         android:name="com.example.bookit.fragment.PromoCodesFragment"
         android:label="Promo codes"
         tools:layout="@layout/fragment_promo_codes" />
 
 
     <fragment
-        android:id="@+id/aboutFragment"
+        android:id="@+id/about"
         android:name="com.example.bookit.fragment.AboutFragment"
         android:label="About"
         tools:layout="@layout/fragment_about" />
     <fragment
-        android:id="@+id/settingFragment"
+        android:id="@+id/settings"
         android:name="com.example.bookit.fragment.SettingFragment"
         android:label="Setting"
         tools:layout="@layout/fragment_setting"/>
