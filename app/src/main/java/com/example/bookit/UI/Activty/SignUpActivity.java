@@ -1,16 +1,31 @@
 package com.example.bookit.UI.Activty;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bookit.R;
+import com.example.bookit.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +33,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private FloatingActionButton SignUp;
 
     private ProgressDialog loadingBar;
+    final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -25,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         loadingBar = new ProgressDialog(this);
-
         Fname = findViewById(R.id.fname);
         Lname = findViewById(R.id.lname);
         email = findViewById(R.id.email_signUp);
@@ -33,10 +49,14 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         rePassword = findViewById(R.id.repass_signUp);
         mobile_num = findViewById(R.id.mobile_signUp);
         SignUp = findViewById(R.id.sign_up_btn_act);
+        mAuth = FirebaseAuth.getInstance();
         SignUp.setOnClickListener(this);
 
 
+
     }
+
+
 
 
     @Override
@@ -99,9 +119,91 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             loadingBar.setMessage("Please wait, while we are checking the credentials");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
+
+            validationEmail(Fname_Str,Lname_Str,email_Str,password_Str,mobile_Str);
 //            validationEmail(Fname_Str,Lname_Str,email_Str,password_Str,mobile_Str);
+        }}
+
+        //validation the Email to crate a new one
+
+        private void validationEmail(final String fname_str, final String lname_str, final String email_str, final String password_str, final String mobile_str) {
+
+            final String email= (email_str.replace("@","-")).replace(".","_");
+
+            rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.child("Users").child(email).child("profile_inf").exists()) {
+                        User user = new User();
+                        user.setFname(fname_str);
+                        user.setLname(lname_str);
+                        user.setEmail(email_str);
+                        user.setPassword(password_str);
+                        user.setMobile(mobile_str);
+
+
+
+                        rootRef.child("Users").child(email).child("profile_inf").setValue(user)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            Toast.makeText(SignUpActivity.this, "Congratulations," +
+                                                    "your account has been created", Toast.LENGTH_LONG).show();
+                                            signUp( email_str, password_str);
+                                            startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                                            loadingBar.dismiss();
+                                        } else {
+
+                                            Toast.makeText(SignUpActivity.this, "Network Error: please try again...", Toast.LENGTH_LONG).show();
+                                            loadingBar.dismiss();
+
+                                        }
+                                    }
+                                });
+                    } else {
+
+                        Toast.makeText(SignUpActivity.this, "this " + email_str + "already exists", Toast.LENGTH_LONG).show();
+                        loadingBar.dismiss();
+                        Toast.makeText(SignUpActivity.this, "Please try anther email", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.e("sign up onCancelled",databaseError.toString());
+
+                }
+            });
         }
 
 
-    }
+        void signUp(String email,String password){
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // Sign in success, update UI with the signed-in user's information
+                                Log.d("success_signup", "createUserWithEmail:success");
+                                FirebaseUser user = mAuth.getCurrentUser();
+
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w("error_signup", "createUserWithEmail:failure", task.getException());
+                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+
+                            }
+
+                            // ...
+                        }
+                    });
+        }
+
+
+
+
 }

@@ -2,6 +2,7 @@ package com.example.bookit.fragment;
 
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.TextView;
 
 import com.example.bookit.R;
 import com.example.bookit.UI.adapter.FragmentAdapter;
+import com.firebase.geofire.GeoFire;
+import com.firebase.geofire.GeoLocation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -37,6 +40,11 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,9 +71,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_home, container, false);
-//        SupportMapFragment mapFragment = (SupportMapFragment) getActivity().getSupportFragmentManager()
-//                .findFragmentById(R.id.map);
-//        mapFragment.getMapAsync(this);
+
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
         return view;
     }
 
@@ -78,8 +87,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         locationRequest.setInterval(1000);
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-
 
 
         LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient,
@@ -107,6 +114,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
 
+//        SharedPreferences sp1=getContext().getSharedPreferences("userLogin", MODE_PRIVATE);
+
+//        String unm=sp1.getString("Unm", null);
+
+        String userId = FirebaseAuth.getInstance().getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("DriversAvailable");
+        GeoFire geoFire= new GeoFire(reference);
+        geoFire.setLocation(userId,new GeoLocation(location.getLatitude(),location.getLongitude()));
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+
+        String userId = FirebaseAuth.getInstance().getUid();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("DriversAvailable");
+        GeoFire geoFire= new GeoFire(reference);
+        geoFire.removeLocation(userId);
+
     }
 
     @Override
@@ -121,25 +149,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         if (!success) {
             Log.e(TAG, "Style parsing failed.");
         }
-        // Position the map's camera near Sydney, Australia.
-
-
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Check Permissions Now
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    1);
-        } else {
-            // permission has been granted, continue as usual
-            Task<Location> locationResult = LocationServices
-                    .getFusedLocationProviderClient(getContext())
-                    .getLastLocation();
-        }
+        // Position the map's camera
 
         mMap.setMyLocationEnabled(true);
-
-
 
         // Add a marker in Sydney and move the camera
 
