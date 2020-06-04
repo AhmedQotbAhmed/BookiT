@@ -35,37 +35,38 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                Book4friendFragment book4friendFragment = new Book4friendFragment();
-                return book4friendFragment;
+                return new Book4friendFragment();
+
             case 1:
-                Book_LaterFragment book_LaterFragment = new Book_LaterFragment();
-                return book_LaterFragment;
+                return new Book_LaterFragment();
+
             case 2:
-                FreeRidesFragment freeRidesFragment = new FreeRidesFragment();
-                return freeRidesFragment;
+                return new FreeRidesFragment();
+
             case 3:
-                MyTripsFragment myTripsFragment = new MyTripsFragment();
-                return myTripsFragment;
+                return new MyTripsFragment();
+
 
             case 4:
-                PaymentFragment paymentFragment = new PaymentFragment();
-                return paymentFragment;
+
+                return new PaymentFragment();
+
 
             case 5:
-                EmergencyFragment emergencyFragment = new EmergencyFragment();
-                return emergencyFragment;
+                return new EmergencyFragment();
+
 
             case 6:
-                PromoCodesFragment promoCodesFragment = new PromoCodesFragment();
-                return promoCodesFragment;
+                return new PromoCodesFragment();
+
 
             case 7:
-                AboutFragment aboutFragment = new AboutFragment();
-                return aboutFragment;
+                return new AboutFragment();
+
 
             case 8:
-                SettingFragment settingFragment = new SettingFragment();
-                return settingFragment;
+                return new SettingFragment();
+
 
 
             default:
