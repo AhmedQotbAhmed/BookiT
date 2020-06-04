@@ -9,11 +9,7 @@
         android:id="@+id/aboutFragment"
         android:name="com.example.bookit.fragment.AboutFragment"
         android:label="fragment_about"
-        tools:layout="@layout/fragment_about" >
-        <action
-            android:id="@+id/action_aboutFragment_to_settingFragment"
-            app:destination="@id/settingFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_about" />
     <fragment
         android:id="@+id/book4friendFragment"
         android:name="com.example.bookit.fragment.Book4friendFragment"
@@ -65,14 +61,18 @@
         android:label="fragment_promo_codes"
         tools:layout="@layout/fragment_promo_codes" >
         <action
-            android:id="@+id/action_promoCodesFragment_to_aboutFragment"
-            app:destination="@id/aboutFragment" />
+            android:id="@+id/action_promoCodesFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.example.bookit.fragment.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myTripsFragment"
         android:name="com.example.bookit.fragment.MyTripsFragment"
