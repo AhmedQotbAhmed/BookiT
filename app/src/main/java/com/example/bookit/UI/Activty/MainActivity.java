@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
     private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
 
+    private String onlineUserId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         final String email = (email_str.replace("@", "-")).replace(".", "_");
 
-        mAuth.signInWithEmailAndPassword(email, password_str)
+        mAuth.signInWithEmailAndPassword(email_str, password_str)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -116,6 +118,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Ed.putString("Unm", email_str);
                             Ed.putString("Psw", password_str);
                             Ed.commit();
+
+                            // setUser Online
+                            onlineUserId=mAuth.getCurrentUser().getUid();
+
+                            rootRef.child("OnlineUsers").child("Customers").child(onlineUserId).setValue(true);
+
+
+
+
+
                             startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         } else {
                             rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
