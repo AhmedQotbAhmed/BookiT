@@ -209,12 +209,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
                     float distance= locationcustomer.distanceTo(locationDriver);
 
 
-
-
-
-
-
-
                     driverMarker=mMap.addMarker(new MarkerOptions().position(driverLng).title("your driver is here"));
 
 
