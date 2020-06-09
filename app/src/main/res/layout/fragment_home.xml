@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HomeFragment">
 
 
@@ -82,19 +82,35 @@
             map:layout_constraintStart_toEndOf="@+id/pickup_map_txv"
             map:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <!--        <EditText-->
+        <!--            android:id="@+id/going_loc_map_edt"-->
+        <!--            android:layout_width="224dp"-->
+        <!--            android:layout_height="13dp"-->
+        <!--            android:background="@null"-->
+        <!--            android:hint="Were are you going?"-->
+        <!--            android:textSize="16sp"-->
+        <!--            map:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            map:layout_constraintEnd_toEndOf="parent"-->
+        <!--            map:layout_constraintHorizontal_bias="0.346"-->
+        <!--            map:layout_constraintStart_toEndOf="@+id/drop_map_txv"-->
+        <!--            map:layout_constraintTop_toBottomOf="@+id/fetching_loc_map_edt"-->
+        <!--            map:layout_constraintVertical_bias="0.75" />-->
+
+        <fragment
             android:id="@+id/going_loc_map_edt"
+            android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
             android:layout_width="224dp"
-            android:layout_height="13dp"
-            android:background="@null"
-            android:hint="Were are you going?"
+            android:layout_height="wrap_content"
             android:textSize="16sp"
             map:layout_constraintBottom_toBottomOf="parent"
             map:layout_constraintEnd_toEndOf="parent"
             map:layout_constraintHorizontal_bias="0.346"
             map:layout_constraintStart_toEndOf="@+id/drop_map_txv"
             map:layout_constraintTop_toBottomOf="@+id/fetching_loc_map_edt"
-            map:layout_constraintVertical_bias="0.75" />
+            map:layout_constraintVertical_bias="0.75"
+
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
