@@ -115,7 +115,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
     private DatabaseReference driverReference;
 
     private SupportMapFragment mapFragment;
-    private ToggleButton toggle;
+
     private GeoFire geoFire;
     private Marker mCurrent;
 
@@ -212,31 +212,16 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         }
 
         //init view
-        toggle = root.findViewById(R.id.location_switch);
+
 
 
         //toggle scaleAnimation
         scaleAnimation();
+        startLocationUpdate();
+        displayLocation();
+        Snackbar.make(mapFragment.getView(), "You are online", Snackbar.LENGTH_SHORT)
+                .show();
 
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    startLocationUpdate();
-                    displayLocation();
-                    Snackbar.make(mapFragment.getView(), "You are online", Snackbar.LENGTH_SHORT)
-                            .show();
-                } else {
-                    stopLocationUpdate();
-                    if (mCurrent!=null)
-                        mCurrent.remove();
-                    mMap.clear();
-                    handler.removeCallbacks(drawPathRunnable);
-                    Snackbar.make(mapFragment.getView(), "You are offline", Snackbar.LENGTH_SHORT)
-                            .show();
-                }
-            }
-        });
 
         polyLineList= new ArrayList<>();
         btnGo=root.findViewById(R.id.btnGo);
@@ -445,9 +430,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
                     if (checkPlayService()) {
                         buildGoogleApiClient();
                         createLocationRequest();
-                        if (toggle.isChecked()) {
+
                             displayLocation();
-                        }
+
                     }
 
                 }
@@ -476,9 +461,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
             if (checkPlayService()) {
                 buildGoogleApiClient();
                 createLocationRequest();
-                if (toggle.isChecked()) {
+
                     displayLocation();
-                }
+
             }
         }
     }
@@ -540,7 +525,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
 
         if (lastLocation != null) {
-            if (toggle.isChecked()) {
+
 
                 final double latitude = lastLocation.getLatitude();
                 final double longitude = lastLocation.getLongitude();
@@ -575,7 +560,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
                         });
 
 
-            }
+
 
         } else {
             Log.d(TAG, "Cannot get your location");
@@ -629,15 +614,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
 
         BounceInterpolator bounceInterpolator = new BounceInterpolator();
         scaleAnimation.setInterpolator(bounceInterpolator);
-        toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                //animation
-                compoundButton.startAnimation(scaleAnimation);
-            }
 
-
-        });
 
     }
 
