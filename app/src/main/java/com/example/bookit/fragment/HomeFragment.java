@@ -25,17 +25,13 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 
 import com.example.bookit.R;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
-import com.firebase.geofire.GeoQuery;
-import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -57,7 +53,6 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -65,18 +60,15 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import pojo.IGoogleApI;
@@ -133,7 +125,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
     private Button btnGo;
     private EditText edtPlace;
     private String destination;
-    private PolylineOptions polyLineOptioins,blackPolyLineOption;
+    private PolylineOptions polyLineOptions, blackPolyLineOptions;
     private Polyline blackPolyLine,greyPolyLine;
 
     private IGoogleApI myServuce;
@@ -231,7 +223,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
             public void onClick(View v) {
                 destination=edtPlace.getText().toString();
                 destination= destination.replace(" ","+");
-                Log.e("edmtdev",destination);
+                 Log.e("edmtdev",destination);
                 getDirection();
             }
         });
@@ -302,21 +294,21 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
                             CameraUpdate mCameraUpdate= CameraUpdateFactory.newLatLngBounds(bounds,2);
                             mMap.animateCamera(mCameraUpdate);
 
-                            polyLineOptioins = new PolylineOptions();
-                            polyLineOptioins.color(Color.GRAY);
-                            polyLineOptioins.width(5);
-                            polyLineOptioins.startCap(new SquareCap());
-                            polyLineOptioins.jointType(JointType.ROUND);
-                            polyLineOptioins.addAll(polyLineList);
-                            greyPolyLine=mMap.addPolyline(polyLineOptioins);
+                            polyLineOptions = new PolylineOptions();
+                            polyLineOptions.color(Color.GRAY);
+                            polyLineOptions.width(5);
+                            polyLineOptions.startCap(new SquareCap());
+                            polyLineOptions.jointType(JointType.ROUND);
+                             polyLineOptions.addAll(polyLineList);
+                            greyPolyLine=mMap.addPolyline(polyLineOptions);
 
-                            blackPolyLineOption = new PolylineOptions();
-                            blackPolyLineOption.color(Color.GRAY);
-                            blackPolyLineOption.width(5);
-                            blackPolyLineOption.startCap(new SquareCap());
-                            blackPolyLineOption.jointType(JointType.ROUND);
+                            blackPolyLineOptions = new PolylineOptions();
+                            blackPolyLineOptions.color(Color.GRAY);
+                            blackPolyLineOptions.width(5);
+                            blackPolyLineOptions.startCap(new SquareCap());
+                            blackPolyLineOptions.jointType(JointType.ROUND);
 
-                            blackPolyLine=mMap.addPolyline(blackPolyLineOption);
+                            blackPolyLine=mMap.addPolyline(blackPolyLineOptions);
                             mMap.addMarker(new MarkerOptions()
                                     .position(polyLineList.get(polyLineList.size()-1))
                                     .title("Pickup Location"));
@@ -330,7 +322,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
                                 @Override
                                 public void onAnimationUpdate(ValueAnimator valueAnimator) {
                                     List<LatLng> points = greyPolyLine.getPoints();
-                                    int percentValue = (int)valueAnimator.getAnimatedValue();
+                                     int percentValue = (int)valueAnimator.getAnimatedValue();
                                     int size = points.size();
                                     int newPoints =(int)(size * (percentValue/100.0f));
                                     List<LatLng> p=points.subList(0,newPoints);
@@ -392,7 +384,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback,
         int lat = 0, lng = 0;
 
         while (index < len) {
-            int b, shift = 0, result = 0;
+             int b, shift = 0, result = 0;
             do {
                 b = encoded.charAt(index++) - 63;
                 result |= (b & 0x1f) << shift;
